@@ -24,7 +24,7 @@
 
         <!-- From File to direct:call-marvel -->
         <route id="call-marvel">
-            <from uri="file://data/marvel?noop=true"/>
+            <from uri="file:/data/marvel?noop=true"/>
             <split>
                 <tokenize token=","/>
                 <setHeader headerName="hash">
