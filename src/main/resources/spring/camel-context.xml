@@ -24,7 +24,7 @@
 
         <!-- From File to direct:call-marvel -->
         <route id="call-marvel">
-            <from uri="file:/data/marvel?noop=true"/>
+            <from uri="file://data/marvel?noop=true&amp;delete=true"/>
             <split>
                 <tokenize token=","/>
                 <setHeader headerName="hash">
@@ -52,7 +52,7 @@
         <!-- Call Marvel REST API -->
         <route id="http-marvel">
             <from uri="direct:call-marvel"/>
-            <to uri="http://gateway.marvel.com/"/>
+            <to uri="http:invokeMarvelRequest"/>
             <unmarshal ref="json-marvel"/>
             <log message="* * * RECORD - ${header.CamelSplitIndex} * * *"/>
             <log message="Name : ${body.data.results[0].name}"/>
