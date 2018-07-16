@@ -34,13 +34,13 @@
                     <method ref="marvelUtil" method="getTs"/>
                 </setHeader>
                 <setHeader headerName="marvelID">
-                    <simple>${body}</simple>
+                    <simple trim="true">${body}</simple>
                 </setHeader>
                 <setHeader headerName="CamelHttpQuery">
                     <simple>hash=${header.hash}&amp;apikey=${properties:apiKey}&amp;ts=${header.ts}</simple>
                 </setHeader>
                 <setHeader headerName="CamelHttpUri">
-                    <simple>http://gateway.marvel.com/v1/public/characters/${body}</simple>
+                    <simple>http://gateway.marvel.com/v1/public/characters/${headers.marvelID}</simple>
                 </setHeader>
                 <setHeader headerName="CamelHttpMethod">
                     <simple>GET</simple>
