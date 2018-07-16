@@ -24,7 +24,8 @@
 
         <!-- From File to direct:call-marvel -->
         <route id="call-marvel">
-            <from uri="file:/data/marvel?noop=true&amp;delete=true"/>
+            <from uri="file:/data/marvel?noop=true&amp;delete=true&amp;moveFailed=../failed"/>
+            <convertBodyTo type="java.lang.String"/>
             <split>
                 <tokenize trim="true" token=","/>
                 <setHeader headerName="hash">
@@ -59,6 +60,10 @@
             <log message="Description : ${body.data.results[0].description}"/>
             <log message="Thumbnail : ${body.data.results[0].thumbnail.path}"/>
             <log message="Comics available : ${body.data.results[0].comics.available}"/>
+            <removeHeaders pattern=".*Http.*"/>
+            <setBody>
+                <simple>null</simple>
+            </setBody>
         </route>
 
     </camelContext>
